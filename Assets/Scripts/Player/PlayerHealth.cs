@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    private int currentHealth;
-    public int maxHealth = 100;
-
+    public float currentHealth;
+    public float damageRate = 1f;
 
     void Start()
     {
@@ -14,10 +13,6 @@ public class PlayerHealth : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            DamagePlayer(10);
-        }
 
     }
 
@@ -32,7 +27,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void DamagePlayer(int damage)
     {
-        currentHealth -= damage;
+        currentHealth -= damage * damageRate;
 
         if (currentHealth <= 0)
         {
