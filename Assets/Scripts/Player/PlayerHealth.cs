@@ -16,15 +16,6 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Enemy")
-        {
-            DamagePlayer(10);
-
-        }
-    }
-
     public void DamagePlayer(int damage)
     {
         currentHealth -= damage * damageRate;

@@ -19,6 +19,9 @@ public class LevelGeneration : MonoBehaviour
 
     public LayerMask whatIsRoom;
 
+    public int maxX = 60;
+    public int maxY = -60;
+
 
     private void Start()
     {
@@ -55,7 +58,7 @@ public class LevelGeneration : MonoBehaviour
         if (direction == 1 || direction == 2)
         { // Move right !
 
-            if (transform.position.x < 25)
+            if (transform.position.x < maxX)
             {
                 downCounter = 0;
                 Vector2 pos = new Vector2(transform.position.x + moveIncrement, transform.position.y);
@@ -102,8 +105,9 @@ public class LevelGeneration : MonoBehaviour
         }
         else if (direction == 5)
         { // MoveDown
+
             downCounter++;
-            if (transform.position.y > -25)
+            if (transform.position.y > maxY)
             {
                 // Now I must replace the room BEFORE going down with a room that has a DOWN opening, so type 3 or 5
                 Collider2D previousRoom = Physics2D.OverlapCircle(transform.position, 1, whatIsRoom);

@@ -60,9 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;
         isDash = true;
-        Debug.Log(transform.localScale.x * dashPower);
         rb.velocity = inputVector * dashPower * speedMultiplier;
-        Debug.Log("Added");
         yield return new WaitForSeconds(dashLength);
         //Add animation
         isDash = false;
