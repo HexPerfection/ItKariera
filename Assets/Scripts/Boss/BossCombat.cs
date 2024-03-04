@@ -14,7 +14,6 @@ public class BossCombat : MonoBehaviour
     public Transform[] spawnPoints; // Points where enemies will be spawned
     public Transform attackPoint; // Point where the attack originates
     public LayerMask playerLayer; // Layer mask for detecting the player
-    public LayerMask enemyLayer;
 
     public float meleeAttackCooldown = 2f;
     public float rangeAttackCooldown = 2f;
