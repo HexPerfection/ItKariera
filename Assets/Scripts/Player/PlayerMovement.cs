@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public float speedMultiplier = 1;
     private Rigidbody2D rb; // Local rigidbody variable to hold a reference to the attached Rigidbody2D component
     private Vector2 inputVector = new Vector2(0.0f, 0.0f);
+    public Transform firePoint;
 
     public float dashPower = 25f;
     private float dashLength = 0.2f;
@@ -53,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
         // Rotation
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 perpendicular = Vector3.Cross(transform.position - mousePos, Vector3.forward);
-        transform.rotation = Quaternion.LookRotation(Vector3.forward, perpendicular);
+        firePoint.rotation = Quaternion.LookRotation(Vector3.forward, perpendicular);
     }
 
     private IEnumerator Dash()

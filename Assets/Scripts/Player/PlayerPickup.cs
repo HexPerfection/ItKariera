@@ -11,7 +11,7 @@ public class PlayerPickup : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q) && currentWeapon != null)
         {
             DropCurrentWeapon();
-        }else if (Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
+        } else if (Input.GetKeyDown(KeyCode.E) && currentWeapon == null)
         {
             PickUpWeapon();
         }
@@ -53,15 +53,14 @@ public class PlayerPickup : MonoBehaviour
     public void DropCurrentWeapon()
     {
             // Detach weapon from player
-            currentWeapon.transform.parent = null;
-
-            // Enable weapon's collider and renderer
-            currentWeapon.GetComponent<Collider2D>().enabled = true;
-            //currentWeapon.GetComponent<SpriteRenderer>().enabled = true;
+        currentWeapon.transform.parent = null;
 
             // Reset weapon's position (optional)
-            currentWeapon.transform.position = new Vector3(transform.position.x + 1, transform.position.y, transform.position.z);
+        currentWeapon.transform.position = new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z);
 
-            currentWeapon = null; // Remove reference to the dropped weapon
+            // Enable weapon's collider and renderer
+        currentWeapon.GetComponent<Collider2D>().enabled = true;
+
+        currentWeapon = null; // Remove reference to the dropped weapon
     }
 }

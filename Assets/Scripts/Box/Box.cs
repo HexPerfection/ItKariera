@@ -13,6 +13,8 @@ public class Box : MonoBehaviour
     {
         // Trigger any animations or effects here
 
+        GetComponent<Collider2D>().enabled = false; 
+
         int randomIndex = Random.Range(0, lootItems.Length);
         GameObject randomLoot = lootItems[randomIndex];
         Instantiate(randomLoot, transform.position, Quaternion.identity);

@@ -37,10 +37,12 @@ public class BossCombat : MonoBehaviour
     private void Update()
     {
         // Move towards the player
-        Vector2 targetDirection = target.position - transform.position;
-        rb.velocity = targetDirection.normalized * moveSpeed;
-
-
+        if (currentStage == BossStage.Third)
+        {
+            Vector2 targetDirection = target.position - transform.position;
+            rb.velocity = targetDirection.normalized * moveSpeed;
+        }
+        
         // Update boss behavior based on current stage
         switch (currentStage)
         {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HeavyController : MonoBehaviour
 {
-    public Transform firePoint;
+    private Transform firePoint;
     public GameObject bulletPrefab;
 
     private float bulletForce = 25f;
@@ -14,6 +14,11 @@ public class HeavyController : MonoBehaviour
 
     public LayerMask enemyLayer;
     private float nextAttack;
+
+    private void Start()
+    {
+        firePoint = GameObject.FindGameObjectsWithTag("Player")[0].transform.GetChild(0);
+    }
 
     // Update is called once per frame
     void Update()

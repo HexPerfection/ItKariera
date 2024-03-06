@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShooterMovement : MonoBehaviour
 {
-    public Transform player; // Reference to the player's transform
+    private Transform player; // Reference to the player's transform
     public float moveSpeed = 3f; // Movement speed of the enemy
     public float stoppingDistance = 5f; // Distance at which the enemy stops moving towards the player
     public float retreatDistance = 3f; // Distance at which the enemy retreats from the player
@@ -14,6 +14,11 @@ public class ShooterMovement : MonoBehaviour
 
     private float nextFireTime; // Time of the next allowed shot
 
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+    }
     void Update()
     {
         // Move towards the player
@@ -35,8 +40,8 @@ public class ShooterMovement : MonoBehaviour
 
             // Rotate towards the player
             Vector2 direction = player.position - transform.position;
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-            transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
+            //float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            //firePoint.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
 
             // Shoot at the player
             if (Time.time >= nextFireTime && Vector2.Distance(transform.position, player.position) <= stoppingDistance)
@@ -52,7 +57,7 @@ public class ShooterMovement : MonoBehaviour
         // Spawn projectile at fire point
         GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.AddForce(firePoint.up * 20, ForceMode2D.Impulse);
+        rb.AddForce((player.position - firePoint.position).normalized * 20, ForceMode2D.Impulse);
 
     }
 }

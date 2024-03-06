@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1639577751098279723}
   - component: {fileID: 6882641925429757644}
   - component: {fileID: 1745151926280154077}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DashPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -168,8 +168,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.19917655, a: 1}
+  m_Sprite: {fileID: 1036383746, guid: eb846d3f4f217a743a9d59896c1ae08b, type: 3}
+  m_Color: {r: 0.16509432, g: 0.92528015, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

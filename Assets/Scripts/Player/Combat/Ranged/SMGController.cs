@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SMGController : MonoBehaviour
 {
-    public Transform firePoint;
+    private Transform firePoint;
     public GameObject bulletPrefab;
 
     private float bulletForce = 20f;
@@ -14,6 +14,11 @@ public class SMGController : MonoBehaviour
 
     public LayerMask enemyLayer;
     private float nextAttack;
+
+    private void Start()
+    {
+        firePoint = GameObject.FindGameObjectsWithTag("Player")[0].transform.GetChild(0);
+    }
 
     // Update is called once per frame
     void Update()

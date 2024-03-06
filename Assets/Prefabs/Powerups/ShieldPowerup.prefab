@@ -73,8 +73,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.19917655, a: 1}
+  m_Sprite: {fileID: 1036383746, guid: eb846d3f4f217a743a9d59896c1ae08b, type: 3}
+  m_Color: {r: 0, g: 0.11083682, b: 0.9622642, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 8622992839126849386}
   - component: {fileID: 3087146623237683579}
   - component: {fileID: 8653117639676762890}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ShieldPowerup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
