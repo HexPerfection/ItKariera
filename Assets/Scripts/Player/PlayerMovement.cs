@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, ISaveLoad
 {
     public Vector2 MovementSpeed; // 2D Movement speed to have independant axis speed
     public float speedMultiplier = 1;
@@ -12,10 +12,12 @@ public class PlayerMovement : MonoBehaviour
     public Transform firePoint;
 
     public float dashPower = 25f;
-    private float dashLength = 0.2f;
+    public float dashLength = 0.2f;
     public float dashCooldown = 1f;
     private bool canDash = true;
     private bool isDash = false;
+
+    public DashBar dashBar;
 
     void Start()
     {
@@ -61,12 +63,33 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = false;
         isDash = true;
+        dashBar.EmptyBar();
         rb.velocity = inputVector * dashPower * speedMultiplier;
         yield return new WaitForSeconds(dashLength);
         //Add animation
+        dashBar.FillBar();
         isDash = false;
         yield return new WaitForSeconds(dashCooldown);
         canDash = true;
     }
 
+    public void LoadData(GameData data)
+    {
+        transform.position = data.playerPosition;
+        speedMultiplier = data.playerAttributesData.speedMultiplier;
+        dashPower = data.playerAttributesData.dashPower;
+        dashLength = data.playerAttributesData.dashLength;
+        dashCooldown = data.playerAttributesData.dashCooldown;
+        
+
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerPosition = transform.position;
+        data.playerAttributesData.speedMultiplier = speedMultiplier;
+        data.playerAttributesData.dashPower = dashPower;
+        data.playerAttributesData.dashLength = dashLength;
+        data.playerAttributesData.dashCooldown = dashCooldown;
+    }
 }

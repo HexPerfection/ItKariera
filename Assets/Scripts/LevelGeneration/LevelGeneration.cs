@@ -22,33 +22,43 @@ public class LevelGeneration : MonoBehaviour
     public int maxX = 60;
     public int maxY = -60;
 
+    public bool shouldGenerate = true;
+
 
     private void Start()
     {
+        Debug.Log("Should genereate:" + shouldGenerate);
+        
+        if (shouldGenerate)
+        {
+            int randStartingPos = Random.Range(0, startingPositions.Length);
+            transform.position = startingPositions[randStartingPos].position;
+            Instantiate(rooms[1], transform.position, Quaternion.identity);
 
-        int randStartingPos = Random.Range(0, startingPositions.Length);
-        transform.position = startingPositions[randStartingPos].position;
-        Instantiate(rooms[1], transform.position, Quaternion.identity);
-
-        direction = Random.Range(1, 6);
+            direction = Random.Range(1, 6);
+        }
+        
     }
 
     private void Update()
     {
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (shouldGenerate)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            }
 
-        if (timeBtwSpawn <= 0 && stopGeneration == false)
-        {
-            Move();
-            timeBtwSpawn = startTimeBtwSpawn;
-        }
-        else
-        {
-            timeBtwSpawn -= Time.deltaTime;
+            if (timeBtwSpawn <= 0 && stopGeneration == false)
+            {
+                Move();
+                timeBtwSpawn = startTimeBtwSpawn;
+            }
+            else
+            {
+                timeBtwSpawn -= Time.deltaTime;
+            }
         }
     }
 
@@ -67,7 +77,7 @@ public class LevelGeneration : MonoBehaviour
                 int randRoom = Random.Range(0, rooms.Length);
                 Instantiate(rooms[randRoom], transform.position, Quaternion.identity);
 
-                // Makes sure the level generator doesn't move left !
+                // Makes sure the level generator doesn't move left
                 direction = Random.Range(1, 6);
                 if (direction == 3)
                 {

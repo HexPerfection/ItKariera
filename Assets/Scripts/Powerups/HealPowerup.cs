@@ -50,7 +50,8 @@ public class HealPowerup : MonoBehaviour
 
     private void ActivatePowerup(PlayerHealth playerHealth)
     {
-        playerHealth.currentHealth += _healMultiplier;
+        playerHealth.currentHealth = Mathf.Clamp(_healMultiplier + playerHealth.currentHealth, 0, 100);
+        playerHealth.healthBar.SetHealth(playerHealth.currentHealth);
     }
 
     private void DeactivatePowerup(PlayerHealth playerHealth)

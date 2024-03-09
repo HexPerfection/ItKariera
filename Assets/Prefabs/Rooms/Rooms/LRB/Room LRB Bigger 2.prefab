@@ -198,7 +198,7 @@ GameObject:
   - component: {fileID: -3338329275427309149}
   m_Layer: 6
   m_Name: Room LRB Bigger 2
-  m_TagString: Untagged
+  m_TagString: Room
   m_Icon: {fileID: -5442936267250999957, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomType: 1
+  roomIndex: 7
 --- !u!61 &-3338329275427309149
 BoxCollider2D:
   m_ObjectHideFlags: 0

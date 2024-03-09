@@ -5,6 +5,7 @@ using UnityEngine;
 public class Room : MonoBehaviour
 {
     public int roomType;
+    public int roomIndex;
 
     public void RoomDestruction()
     {

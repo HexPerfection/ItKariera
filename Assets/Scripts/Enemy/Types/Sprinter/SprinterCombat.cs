@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SprinterCombat : MonoBehaviour
 {
-
     public int damage = 10;
     public float knockbackForce = 10f;
-
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

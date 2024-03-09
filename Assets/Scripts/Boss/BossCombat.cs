@@ -6,7 +6,7 @@ public class BossCombat : MonoBehaviour
 {
     public enum BossStage { First, Second, Third }
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 3f;
     public Transform target; // Player's transform
     public GameObject bulletPrefab;
     public GameObject enemyPrefab; // Prefab of the enemy to spawn
@@ -15,7 +15,7 @@ public class BossCombat : MonoBehaviour
     public Transform attackPoint; // Point where the attack originates
     public LayerMask playerLayer; // Layer mask for detecting the player
 
-    public float meleeAttackCooldown = 2f;
+    public float meleeAttackCooldown = 3f;
     public float rangeAttackCooldown = 2f;
     public float spawnCooldown = 10f;
     public int damageIncrease = 10;
@@ -37,7 +37,7 @@ public class BossCombat : MonoBehaviour
     private void Update()
     {
         // Move towards the player
-        if (currentStage == BossStage.Third)
+        if (currentStage != BossStage.First)
         {
             Vector2 targetDirection = target.position - transform.position;
             rb.velocity = targetDirection.normalized * moveSpeed;
@@ -47,15 +47,16 @@ public class BossCombat : MonoBehaviour
         switch (currentStage)
         {
             case BossStage.First:
-                NormalAttack();
+                ShootAtPlayer();
                 break;
             case BossStage.Second:
-                Debug.Log("Second stage");
                 SpawnEnemiesEvery10Seconds();
                 NormalAttack();
+                ShootAtPlayer();
                 break;
             case BossStage.Third:
                 QuickMove();
+                Debug.Log("Third");
                 SpawnEnemiesEvery10Seconds();
                 NormalAttack();
                 ShootAtPlayer();
@@ -86,7 +87,7 @@ public class BossCombat : MonoBehaviour
     private void QuickMove()
     {
         // Increase movement speed
-        //moveSpeed = 7.5f;
+        moveSpeed = 4f;
     }
 
     private void Attack()

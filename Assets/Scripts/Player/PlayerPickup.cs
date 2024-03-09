@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerPickup : MonoBehaviour
+public class PlayerPickup : MonoBehaviour, ISaveLoad
 {
     private GameObject currentWeapon; // Track the current weapon
     public Transform player; // Where the weapon should be attached on the player
@@ -62,5 +62,15 @@ public class PlayerPickup : MonoBehaviour
         currentWeapon.GetComponent<Collider2D>().enabled = true;
 
         currentWeapon = null; // Remove reference to the dropped weapon
+    }
+
+    public void LoadData(GameData data)
+    {
+        currentWeapon = data.playerAttributesData.currentWeapon;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data.playerAttributesData.currentWeapon = currentWeapon;
     }
 }
