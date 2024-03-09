@@ -95,9 +95,10 @@ GameObject:
   - component: {fileID: 1855468697200786281}
   - component: {fileID: 2557072727153745987}
   - component: {fileID: 619525326776468553}
+  - component: {fileID: 1270618497436744984}
   m_Layer: 8
   m_Name: DamagePowerup
-  m_TagString: Untagged
+  m_TagString: Powerup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,3 +179,16 @@ MonoBehaviour:
   _damageMultiplier: 2
   _powerupDuration: 5
   _art: {fileID: 5802262388414263309}
+--- !u!114 &1270618497436744984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8352936263104890859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f734d81a35338141a193bda4c0cdbcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0

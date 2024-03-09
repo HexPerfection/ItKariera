@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7490291463131382214}
   m_Layer: 0
   m_Name: BoxEntrance
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -102,6 +102,7 @@ MonoBehaviour:
   - {fileID: 6946436932644531190, guid: 6bc2dff0367a3f94a8feb026e78f269a, type: 3}
   destroyDelay: 0
   health: 2
+  id: 0
 --- !u!61 &7490291463131382214
 BoxCollider2D:
   m_ObjectHideFlags: 0

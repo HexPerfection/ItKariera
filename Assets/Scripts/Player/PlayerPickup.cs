@@ -5,6 +5,7 @@ public class PlayerPickup : MonoBehaviour, ISaveLoad
 {
     private GameObject currentWeapon; // Track the current weapon
     public Transform player; // Where the weapon should be attached on the player
+    public GameObject[] possibleWeapons;
 
     void Update()
     {
@@ -66,11 +67,23 @@ public class PlayerPickup : MonoBehaviour, ISaveLoad
 
     public void LoadData(GameData data)
     {
-        currentWeapon = data.playerAttributesData.currentWeapon;
+        if (data.playerAttributesData.hasWeapon)
+        {
+            GameObject equippedWeapon = Instantiate(possibleWeapons[data.playerAttributesData.currentWeaponId], transform.position, Quaternion.identity);
+            equippedWeapon.transform.parent = transform;
+            currentWeapon = equippedWeapon;
+        }
     }
 
     public void SaveData(GameData data)
     {
-        data.playerAttributesData.currentWeapon = currentWeapon;
+        if (currentWeapon)
+        {
+            data.playerAttributesData.hasWeapon = true;
+            data.playerAttributesData.currentWeaponId = currentWeapon.GetComponent<Weapon>().id;
+        } else
+        {
+            data.playerAttributesData.hasWeapon = false;
+        }
     }
 }

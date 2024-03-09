@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelGeneration : MonoBehaviour
+public class LevelGeneration : MonoBehaviour, ISaveLoad
 {
 
     public Transform[] startingPositions;
@@ -161,5 +161,18 @@ public class LevelGeneration : MonoBehaviour
             }
 
         }
+    }
+
+    public void LoadData(GameData data)
+    {
+        if (data.roomData.rooms.Count != 0)
+        {
+            shouldGenerate = false;
+        }
+    }
+
+    public void SaveData(GameData data)
+    {
+        Debug.Log("Saved");
     }
 }

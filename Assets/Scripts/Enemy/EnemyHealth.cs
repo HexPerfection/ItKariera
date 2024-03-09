@@ -7,13 +7,12 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public string id;
+    public int id;
     public float maxHealth = 3;
     public float currentHealth;
     void Start()
     {
         currentHealth = maxHealth;
-        id = System.Guid.NewGuid().ToString();
     }
 
     // Update is called once per frame

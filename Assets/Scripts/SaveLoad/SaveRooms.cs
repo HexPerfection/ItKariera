@@ -22,13 +22,23 @@ public class SaveRooms : MonoBehaviour, ISaveLoad
                 if (roomIndex == roomScript.roomIndex)
                 {
                     Instantiate(roomPrefab, room.position, Quaternion.identity);
+
                 }
             }
+        }
+
+        GameObject[] spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+
+        foreach (GameObject spawnPoint in spawnPoints)
+        {
+            Destroy(spawnPoint.GetComponent<SpawnObject>());
         }
     }
 
     public void SaveData(GameData data)
     {
+        data.roomData.rooms.Clear();
+        
         GameObject[] rooms = GameObject.FindGameObjectsWithTag("Room");
 
         foreach (GameObject room in rooms) 

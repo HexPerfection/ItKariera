@@ -6,115 +6,67 @@ using UnityEngine;
 
 public class SaveEnemies : MonoBehaviour, ISaveLoad
 {
-    public GameObject[] enemyTemplates;
+    public GameObject[] enemyPrefabs;
 
 
     public void LoadData(GameData data)
     {
-        GameObject[] oldEnemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject enemy in oldEnemies)
-        {
-            Destroy(enemy);
-        }
+        //Delete old boss
+        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
 
         List<Enemy> enemies = data.enemyData.enemies;
 
         foreach (Enemy enemy in enemies)
         {
-            GameObject currentEnemy;
+            GameObject currentEnemy = Instantiate(enemyPrefabs[enemy.id], enemy.position, Quaternion.identity);
 
-            if (enemy.shooterMoveSpeed != 0)
+            if (enemy.id == 4)
             {
-                if (enemy.shooterFireRate > 1)
-                {
-                    currentEnemy = enemyTemplates[2];
-                }
-                else
-                {
-                    currentEnemy = enemyTemplates[3];
-                }
+                BossHealth bossHealth = currentEnemy.GetComponent<BossHealth>();
+                bossHealth.currentHealth = (int)enemy.currentHealth;
 
-                ShooterMovement shooterMovement = currentEnemy.GetComponent<ShooterMovement>();
-                shooterMovement.moveSpeed = enemy.shooterMoveSpeed;
-                shooterMovement.fireRate = enemy.shooterFireRate;
-                shooterMovement.retreatDistance = enemy.shooterRetreatDistance;
-                shooterMovement.stoppingDistance = enemy.shooterStoppingDistance;
-            }
-            else
+                //Force to see if stage should change
+                bossHealth.TakeDamage(0);
+            } else
             {
-                if (enemy.sprinterMoveSpeed > 3)
-                {
-                    currentEnemy = enemyTemplates[0];
-                } else
-                {
-                    currentEnemy = enemyTemplates[1];
-                }
-
-                SprinterMovement sprinterMovement = currentEnemy.AddComponent<SprinterMovement>();
-                SprinterCombat sprinterCombat = currentEnemy.AddComponent<SprinterCombat>();
-
-                sprinterMovement.speed = enemy.sprinterMoveSpeed;
-                sprinterCombat.damage = enemy.sprinterDamage;
-                sprinterCombat.knockbackForce = enemy.sprinterKnockbackForce;
+                EnemyHealth enemyHealth = currentEnemy.GetComponent<EnemyHealth>();
+                enemyHealth.currentHealth = enemy.currentHealth;
             }
-
-            EnemyHealth enemyHealth = currentEnemy.GetComponent<EnemyHealth>();
-            enemyHealth.id = enemy.id;
-            enemyHealth.maxHealth = enemy.maxHealth;
-            enemyHealth.currentHealth = enemy.currentHealth;
-
-            currentEnemy.transform.position = enemy.position;
-
-            Instantiate(currentEnemy, enemy.position, Quaternion.identity);
+            
+            
         }
     }
 
     public void SaveData(GameData data)
     {
+        data.enemyData.enemies.Clear();
+        
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject enemy in enemies)
         {
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            SprinterMovement sprinterMovement = enemy.GetComponent<SprinterMovement>();
-            SprinterCombat sprinterCombat = enemy.GetComponent<SprinterCombat>();
-            ShooterMovement shooterMovement = enemy.GetComponent<ShooterMovement>();
-            
             Enemy currentEnemy = new Enemy();
-            currentEnemy.position = enemy.transform.position;
 
-            currentEnemy.id = enemyHealth.id;
-            currentEnemy.maxHealth = enemyHealth.maxHealth;
-            currentEnemy.currentHealth = enemyHealth.currentHealth;
-
-            if (shooterMovement != null)
+            if (enemy.GetComponent<Bullet>() != null)
             {
-                currentEnemy.shooterMoveSpeed = shooterMovement.moveSpeed;
-                currentEnemy.shooterFireRate = shooterMovement.fireRate;
-                currentEnemy.shooterRetreatDistance = shooterMovement.retreatDistance;
-                currentEnemy.shooterStoppingDistance = shooterMovement.stoppingDistance;
-            } else
-            {
-                currentEnemy.sprinterMoveSpeed = sprinterMovement.speed;
-                currentEnemy.sprinterDamage = sprinterCombat.damage;
-                currentEnemy.sprinterKnockbackForce = sprinterCombat.knockbackForce;
+                return;
             }
 
+            if (enemy.GetComponent<BossHealth>() != null)
+            {
+                currentEnemy.id = enemy.GetComponent<BossHealth>().id;
+                currentEnemy.currentHealth = enemy.GetComponent<BossHealth>().currentHealth;
+            } else
+            {
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                Debug.Log(enemyHealth);
+                currentEnemy.id = enemyHealth.id;
+                currentEnemy.currentHealth = enemyHealth.currentHealth;
+            }
+
+            currentEnemy.position = enemy.transform.position;
             data.enemyData.enemies.Add(currentEnemy);
-            
+
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

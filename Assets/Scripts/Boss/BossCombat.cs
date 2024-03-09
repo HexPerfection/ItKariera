@@ -32,6 +32,7 @@ public class BossCombat : MonoBehaviour
     {
         //animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
     private void Update()

@@ -3,19 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 public class DataPersistenceManager : MonoBehaviour
 {
     [Header("File Storage Config")]
     [SerializeField] private string fileName;
-    [SerializeField] private bool useEncryption;
 
     private GameData gameData;
     private List<ISaveLoad> dataPersistenceObjects;
     private FileDataHandler dataHandler;
 
     private string selectedProfileId = "test";
-    public LevelGeneration levelGeneration;
+    //public LevelGeneration levelGeneration;
 
     public static DataPersistenceManager instance { get; private set; }
 
@@ -31,7 +31,7 @@ public class DataPersistenceManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
 
-        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
+        dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
 
         //InitializeSelectedProfileId();
     }
@@ -60,7 +60,7 @@ public class DataPersistenceManager : MonoBehaviour
         LoadGame();
     }
 
-    public void DeleteProfileData(string profileId)
+    /*public void DeleteProfileData(string profileId)
     {
         // delete the data for this profile id
         dataHandler.Delete(profileId);
@@ -68,23 +68,27 @@ public class DataPersistenceManager : MonoBehaviour
         InitializeSelectedProfileId();
         // reload the game so that our data matches the newly selected profile id
         LoadGame();
-    }
+    }*/
 
-    private void InitializeSelectedProfileId()
+    /*private void InitializeSelectedProfileId()
     {
         selectedProfileId = dataHandler.GetMostRecentlyUpdatedProfileId();
-    }
+    }*/
 
     public void NewGame()
     {
         gameData = new GameData();
     }
 
-    public void LoadGame()
+    public async void LoadGame()
     {
 
-        // load any saved data from a file using the data handler
-        gameData = dataHandler.Load(selectedProfileId);
+        // load any saved data from a file using the data handler only if load button is clicked
+        if (LoadSettings.shouldLoadFile)
+        {
+            gameData = await dataHandler.Load(selectedProfileId);
+        }
+        
 
         // start a new game if the data is null and we're configured to initialize data for debugging purposes
         if (gameData == null)
@@ -99,7 +103,7 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
 
-        levelGeneration.shouldGenerate = false;
+        //levelGeneration.shouldGenerate = false;
 
         // push the loaded data to all other scripts that need it
         foreach (ISaveLoad dataPersistenceObj in dataPersistenceObjects)
@@ -151,8 +155,8 @@ public class DataPersistenceManager : MonoBehaviour
         return gameData != null;
     }
 
-    public Dictionary<string, GameData> GetAllProfilesGameData()
+    /*public Dictionary<string, GameData> GetAllProfilesGameData()
     {
         return dataHandler.LoadAllProfiles();
-    }
+    }*/
 }

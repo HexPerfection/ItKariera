@@ -6,10 +6,13 @@ using UnityEngine;
 public class GameData
 {
     public long lastUpdated;
-    public Vector2 playerPosition = new Vector2(100, 100);
+    public Vector2 playerPosition = new Vector2(-50, 2);
     
     public AttributesData playerAttributesData = new AttributesData();
-    public EnemyData enemyData;
-    public RoomData roomData;
+    public EnemyData enemyData = new EnemyData();
+    public RoomData roomData = new RoomData();
+    public BoxData boxData = new BoxData();
+    public PowerupData powerupData = new PowerupData();
+    public WeaponData weaponData = new WeaponData();
     
 }

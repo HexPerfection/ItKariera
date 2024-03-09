@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7490291463131382214}
   m_Layer: 0
   m_Name: BoxWeapons
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -105,6 +105,7 @@ MonoBehaviour:
   - {fileID: 6357252699520468946, guid: 178dcfc56e30af443840c6c678636887, type: 3}
   destroyDelay: 0
   health: 10
+  id: 2
 --- !u!61 &7490291463131382214
 BoxCollider2D:
   m_ObjectHideFlags: 0

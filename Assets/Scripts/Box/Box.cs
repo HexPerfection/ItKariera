@@ -7,6 +7,7 @@ public class Box : MonoBehaviour
     public GameObject[] lootItems; // Array of weapons or powerups to drop
     public float destroyDelay = 0.5f; // Delay before destroying the loot box
     public float health = 5;
+    public int id;
 
 
     public void DestroyLootBox()

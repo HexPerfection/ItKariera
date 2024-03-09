@@ -40,6 +40,9 @@ public class PlayerHealth : MonoBehaviour, ISaveLoad
         currentHealth = data.playerAttributesData.currentHealth;
         maxHealth = data.playerAttributesData.maxHealth;
         damageRate = data.playerAttributesData.damageRate;
+        
+        //Force the UI to change
+        DamagePlayer(0);
     }
 
     public void SaveData(GameData data)

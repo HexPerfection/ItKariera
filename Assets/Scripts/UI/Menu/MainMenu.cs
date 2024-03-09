@@ -7,12 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        LoadSettings.shouldLoadFile = false;
         SceneManager.LoadSceneAsync(0);
     }
 
     public void LoadFile()
     {
-        //Add load functionality
+        LoadSettings.shouldLoadFile = true;
+        SceneManager.LoadSceneAsync(0);
     }
 
     public void Leave()

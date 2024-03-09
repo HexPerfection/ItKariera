@@ -35,6 +35,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Restart()
     {
+        LoadSettings.shouldLoadFile = false;
         SceneManager.LoadSceneAsync(0);
     }
 

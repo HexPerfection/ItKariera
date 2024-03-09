@@ -8,7 +8,8 @@ public class BossHealth : MonoBehaviour
    // public Slider healthSlider; // Reference to the UI slider for boss health
     public BossCombat bossCombat; // Reference to the boss controller script
 
-    private int currentHealth;
+    public int currentHealth;
+    public int id = 5;
 
     private void Start()
     {

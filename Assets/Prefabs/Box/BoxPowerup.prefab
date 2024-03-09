@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7490291463131382214}
   m_Layer: 0
   m_Name: BoxPowerup
-  m_TagString: Untagged
+  m_TagString: Box
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   - {fileID: 506112472131126863, guid: 2e5df9a2a50f37f43849b04cbd8acab0, type: 3}
   destroyDelay: 0
   health: 5
+  id: 1
 --- !u!61 &7490291463131382214
 BoxCollider2D:
   m_ObjectHideFlags: 0

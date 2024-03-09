@@ -16,8 +16,8 @@ public class RoomData
 [System.Serializable]
 public class SingleRoom
 {
-    public int roomType;
-    public int roomIndex;
+    public int roomType = 0;
+    public int roomIndex = 0;
 
-    public Vector2 position;
+    public Vector2 position = Vector2.zero;
 }
