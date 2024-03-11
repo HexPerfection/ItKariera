@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
     public void LoadFile()
     {
         LoadSettings.shouldLoadFile = true;
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync(0);  
     }
 
     public void Leave()

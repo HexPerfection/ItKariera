@@ -7,15 +7,20 @@ using UnityEngine;
 public class SaveEnemies : MonoBehaviour, ISaveLoad
 {
     public GameObject[] enemyPrefabs;
-
-
     public void LoadData(GameData data)
     {
-        //Delete old boss
-        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
 
         List<Enemy> enemies = data.enemyData.enemies;
 
+        
+        //Destroy old boss
+        foreach (Enemy enemy in enemies)
+        {
+            if (enemy.id == 4)
+            {
+                Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+            }
+        }
         foreach (Enemy enemy in enemies)
         {
             GameObject currentEnemy = Instantiate(enemyPrefabs[enemy.id], enemy.position, Quaternion.identity);

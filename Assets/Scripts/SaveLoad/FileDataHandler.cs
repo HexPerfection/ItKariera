@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using System;
-using System.IO;
-using UnityEngine.Networking;
 using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
+using UnityEngine.SceneManagement;
 
 public class FileDataHandler
 {
@@ -30,7 +26,12 @@ public class FileDataHandler
 
         string loadedData = await Get("https://localhost:7111/api/Load");
 
-
+        if (loadedData == null)
+        {
+            SceneManager.LoadSceneAsync(1);
+            Debug.Log("No game data to load");
+        }
+        
         GameData data = JsonUtility.FromJson<GameData>(loadedData);
 
         return data;
@@ -142,7 +143,14 @@ public class FileDataHandler
     private async Task<string> Get(string url)
     {
         var httpClient = new HttpClient();
-        return await httpClient.GetStringAsync(url);
+        HttpResponseMessage response = await httpClient.GetAsync(url);
+        if (response.IsSuccessStatusCode)
+        {
+            return await response.Content.ReadAsStringAsync();
+        } else
+        {
+            return null;
+        }
     }
 
     public async Task Post(string url, string jsonData)

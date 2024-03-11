@@ -216,7 +216,7 @@ MonoBehaviour:
   moveSpeed: 3
   target: {fileID: 0}
   bulletPrefab: {fileID: 5043358212019571524, guid: c57b9cc1774c37e459916b985a0fd6e0, type: 3}
-  enemyPrefab: {fileID: 43157997828935049, guid: 8648b2b33a8d54e4db0bb0ff9115d95b, type: 3}
+  enemyPrefab: {fileID: 1737659898356290051, guid: 300806b18de710f459864a076bbb9158, type: 3}
   firePoint: {fileID: 8524997406394965810}
   spawnPoints:
   - {fileID: 2865757650109253976}

@@ -8,6 +8,8 @@ public class SaveWeapons : MonoBehaviour, ISaveLoad
 
     public void LoadData(GameData data)
     {
+        //Destroy(GameObject.FindGameObjectWithTag("Weapon"));
+        
         List<SingleWeapon> weapons = data.weaponData.weapons;
 
         foreach (SingleWeapon weapon in weapons)

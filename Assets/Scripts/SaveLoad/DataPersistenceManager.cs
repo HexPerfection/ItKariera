@@ -1,9 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using UnityEngine.SceneManagement;
-using Unity.VisualScripting;
 
 public class DataPersistenceManager : MonoBehaviour
 {
@@ -15,7 +13,7 @@ public class DataPersistenceManager : MonoBehaviour
     private FileDataHandler dataHandler;
 
     private string selectedProfileId = "test";
-    //public LevelGeneration levelGeneration;
+    public LevelGeneration levelGeneration;
 
     public static DataPersistenceManager instance { get; private set; }
 
@@ -28,7 +26,7 @@ public class DataPersistenceManager : MonoBehaviour
             return;
         }
         instance = this;
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
 
 
         dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
@@ -87,7 +85,16 @@ public class DataPersistenceManager : MonoBehaviour
         if (LoadSettings.shouldLoadFile)
         {
             gameData = await dataHandler.Load(selectedProfileId);
+            Debug.Log("Checking for file data");
+            if (gameData != null)
+            {
+                Debug.Log("Data was found");
+                levelGeneration.shouldGenerate = false;
+            }
+            
         }
+
+        Debug.Log(gameData);
         
 
         // start a new game if the data is null and we're configured to initialize data for debugging purposes

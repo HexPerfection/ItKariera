@@ -9,6 +9,8 @@ public class LevelGeneration : MonoBehaviour, ISaveLoad
     public Transform[] startingPositions;
     public GameObject[] rooms; // index 1 --> LR, index 2 --> LRB, index 3 --> LRT, index 4 --> LRBT
 
+    public GameObject bossRoom;
+
     private int direction;
     public bool stopGeneration;
     private int downCounter;
@@ -29,15 +31,16 @@ public class LevelGeneration : MonoBehaviour, ISaveLoad
     {
         Debug.Log("Should genereate:" + shouldGenerate);
         
-        if (shouldGenerate)
+        if (shouldGenerate && !LoadSettings.shouldLoadFile)
         {
             int randStartingPos = Random.Range(0, startingPositions.Length);
             transform.position = startingPositions[randStartingPos].position;
             Instantiate(rooms[1], transform.position, Quaternion.identity);
-
             direction = Random.Range(1, 6);
         }
-        
+
+        Instantiate(bossRoom, new Vector2(40, -100), Quaternion.identity);
+
     }
 
     private void Update()

@@ -10,7 +10,7 @@ public class Bullet : MonoBehaviour
     {
         if (CompareTag("Player"))
         {
-            if (collision2D.gameObject.tag == "Enemy")
+            if (collision2D.gameObject.tag == "Enemy" && collision2D.gameObject.GetComponent<Bullet>() == null)
             {
                 if (collision2D.gameObject.GetComponent<BossHealth>() != null) 
                 {
@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
 
         } else if (CompareTag("Enemy"))
         {
-            if (collision2D.gameObject.tag == "Player")
+            if (collision2D.gameObject.tag == "Player" && collision2D.gameObject.GetComponent<Bullet>() == null)
             {
                 collision2D.gameObject.GetComponent<PlayerHealth>().DamagePlayer(((int)damage));
             }
