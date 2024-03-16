@@ -101,7 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
-  collisionEffect: {fileID: 0}
+  collisionEffect: {fileID: 832254085406915076, guid: 5ff8e48a0eaa4fe478e94a517ea17d38, type: 3}
 --- !u!50 &8130692879558953529
 Rigidbody2D:
   serializedVersion: 4

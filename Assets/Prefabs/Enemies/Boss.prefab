@@ -201,6 +201,7 @@ MonoBehaviour:
   bossCombat: {fileID: 6410554152965347598}
   currentHealth: 0
   id: 4
+  deathEffect: {fileID: 832254085406915076, guid: 1c2d0a5207e7507419bb3845a797302a, type: 3}
 --- !u!114 &6410554152965347598
 MonoBehaviour:
   m_ObjectHideFlags: 0

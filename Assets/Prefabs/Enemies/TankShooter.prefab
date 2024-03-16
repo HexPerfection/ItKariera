@@ -207,6 +207,7 @@ MonoBehaviour:
   id: 3
   maxHealth: 10
   currentHealth: 10
+  deathEffect: {fileID: 832254085406915076, guid: bb6efb74c14d70b4eb04eb2e6134f43e, type: 3}
 --- !u!114 &1078482110230992320
 MonoBehaviour:
   m_ObjectHideFlags: 0

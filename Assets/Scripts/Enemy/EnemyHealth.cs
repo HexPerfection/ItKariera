@@ -10,6 +10,8 @@ public class EnemyHealth : MonoBehaviour
     public int id;
     public float maxHealth = 3;
     public float currentHealth;
+
+    public GameObject deathEffect;
     void Start()
     {
         currentHealth = maxHealth;
@@ -27,6 +29,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

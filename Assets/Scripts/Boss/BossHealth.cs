@@ -11,6 +11,8 @@ public class BossHealth : MonoBehaviour
     public int currentHealth;
     public int id = 5;
 
+    public GameObject deathEffect;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -41,6 +43,7 @@ public class BossHealth : MonoBehaviour
     private void Die()
     {
         // Handle boss death (e.g., play death animation, spawn loot, etc.)
+        Instantiate(deathEffect, transform.position, Quaternion.identity);
         Destroy(gameObject);
         Debug.Log("Boss died. Victory!");
     }

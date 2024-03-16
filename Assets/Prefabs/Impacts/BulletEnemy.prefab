@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3029395845443230030}
   - component: {fileID: -7035791126830875084}
   m_Layer: 0
-  m_Name: BulletPlayer
+  m_Name: BulletEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 31.436071, y: -108.64476, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.75, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 832254085406915076}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4dd60bc4e71c01c49bbf53751224bcd0, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0a2c40408b8f11a47baa62128b42bd2a, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

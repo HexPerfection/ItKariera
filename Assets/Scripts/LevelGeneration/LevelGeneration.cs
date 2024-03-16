@@ -127,10 +127,6 @@ public class LevelGeneration : MonoBehaviour, ISaveLoad
 
                 if (previousRoom.GetComponent<Room>().roomType != 1 && previousRoom.GetComponent<Room>().roomType != 3)
                 {
-
-                    // My problem : if the level generation goes down TWICE in a row, there's a chance that the previous room is just 
-                    // a LRB, meaning there's no TOP opening for the other room ! 
-
                     if (downCounter >= 2)
                     {
                         previousRoom.GetComponent<Room>().RoomDestruction();
