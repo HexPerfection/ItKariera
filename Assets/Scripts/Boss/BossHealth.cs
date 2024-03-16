@@ -42,6 +42,7 @@ public class BossHealth : MonoBehaviour
     {
         // Handle boss death (e.g., play death animation, spawn loot, etc.)
         Destroy(gameObject);
+        Debug.Log("Boss died. Victory!");
     }
 
     /*private void UpdateHealthUI()

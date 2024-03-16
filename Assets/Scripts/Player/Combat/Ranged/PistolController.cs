@@ -35,7 +35,9 @@ public class PistolController : MonoBehaviour
 
     public void Shoot()
     {
-        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+        float angle = Mathf.Atan2(firePoint.right.y, firePoint.right.x) * Mathf.Rad2Deg;
+
+        GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
         bullet.GetComponent<Bullet>().damage = damage;
 
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

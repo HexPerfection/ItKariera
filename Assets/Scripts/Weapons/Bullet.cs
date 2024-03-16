@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public float damage;
+    public GameObject collisionEffect;
     
     void OnTriggerEnter2D(Collider2D collision2D)
     {
@@ -29,6 +30,11 @@ public class Bullet : MonoBehaviour
                 collision2D.gameObject.GetComponent<PlayerHealth>().DamagePlayer(((int)damage));
             }
         }
-        Destroy(gameObject);
+
+        if (collisionEffect != null)
+        {
+            Instantiate(collisionEffect, transform.position, Quaternion.identity);
+        }      
+        Destroy(gameObject);     
     }
 }

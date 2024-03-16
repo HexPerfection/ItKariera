@@ -55,7 +55,9 @@ public class ShooterMovement : MonoBehaviour
     void Shoot()
     {
         // Spawn projectile at fire point
-        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, firePoint.rotation);
+        float angle = Mathf.Atan2(firePoint.right.y, firePoint.right.x) * Mathf.Rad2Deg;
+
+        GameObject bullet = Instantiate(projectilePrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce((player.position - firePoint.position).normalized * 20, ForceMode2D.Impulse);
 

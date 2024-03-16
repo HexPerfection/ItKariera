@@ -6,7 +6,7 @@ using UnityEngine;
 public class GameData
 {
     public long lastUpdated;
-    public Vector2 playerPosition = new Vector2(-6, 0);
+    public Vector2 playerPosition = new Vector2(15, -108);
     
     public AttributesData playerAttributesData = new AttributesData();
     public EnemyData enemyData = new EnemyData();

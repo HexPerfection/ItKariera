@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2083ed6c40cfc54fa8963a970eed128, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 7067305923456157008, guid: 81d4da93a99bfc244840e8da802f181a, type: 3}
+  bulletPrefab: {fileID: 7067305923456157008, guid: 597402f737d5b6d4682567bd238ac351, type: 3}
   attackRate: 0.5
   enemyLayer:
     serializedVersion: 2

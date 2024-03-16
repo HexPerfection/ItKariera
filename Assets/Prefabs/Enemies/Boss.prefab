@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   target: {fileID: 0}
-  bulletPrefab: {fileID: 5043358212019571524, guid: c57b9cc1774c37e459916b985a0fd6e0, type: 3}
+  bulletPrefab: {fileID: 5043358212019571524, guid: a847cf816854c8443b7269181580a191, type: 3}
   enemyPrefab: {fileID: 1737659898356290051, guid: 300806b18de710f459864a076bbb9158, type: 3}
   firePoint: {fileID: 8524997406394965810}
   spawnPoints:
@@ -226,7 +226,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   meleeAttackCooldown: 2
-  rangeAttackCooldown: 2
+  rangeAttackCooldown: 1
   spawnCooldown: 10
   damageIncrease: 10
 --- !u!58 &2451223896814080428

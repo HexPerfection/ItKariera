@@ -110,7 +110,13 @@ public class BossCombat : MonoBehaviour
         if (Time.time >= nextRangeAttackTime)
         {
             // Instantiate bullet
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+            Vector2 direction = target.position - transform.position;
+            
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+            Debug.Log(angle);
+
+            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.Euler(0f, 0f, angle));
             // Set bullet direction towards the player
             bullet.GetComponent<Rigidbody2D>().velocity = (target.position - firePoint.position).normalized * 10f;
             // Set next attack time
