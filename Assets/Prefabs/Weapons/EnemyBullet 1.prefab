@@ -137,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   collisionEffect: {fileID: 832254085406915076, guid: 41f9b395ef6559e499ed1028a4f0dd0f, type: 3}
+  weaponId: 6
 --- !u!50 &2051060116418439797
 Rigidbody2D:
   serializedVersion: 4

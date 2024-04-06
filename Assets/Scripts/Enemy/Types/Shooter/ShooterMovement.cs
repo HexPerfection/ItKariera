@@ -14,6 +14,10 @@ public class ShooterMovement : MonoBehaviour
 
     private float nextFireTime; // Time of the next allowed shot
 
+    private bool isSlowed = false;
+
+    public SpriteRenderer sr;
+
 
     private void Start()
     {
@@ -61,5 +65,27 @@ public class ShooterMovement : MonoBehaviour
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
         rb.AddForce((player.position - firePoint.position).normalized * 20, ForceMode2D.Impulse);
 
+    }
+
+    public void SlowDown(float slowDuration, float slowFactor)
+    {
+        if (!isSlowed)
+        {
+            StartCoroutine(SlowDownCoroutine(slowDuration, slowFactor));
+        }   
+    }
+
+    private IEnumerator SlowDownCoroutine(float duration, float factor)
+    {
+        float originalSpeed = moveSpeed;
+        moveSpeed *= factor; // Slow down the enemy
+        isSlowed = true;
+        sr.color = Color.cyan;
+
+        yield return new WaitForSeconds(duration); // Wait for the specified duration
+
+        sr.color = Color.white;
+        moveSpeed = originalSpeed; // Restore the original speed
+        isSlowed = false;
     }
 }

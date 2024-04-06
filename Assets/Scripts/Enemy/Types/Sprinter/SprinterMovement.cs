@@ -6,6 +6,9 @@ public class SprinterMovement : MonoBehaviour
 {
     private GameObject player;
     public float speed;
+    private bool isSlowed = false;
+    
+    public SpriteRenderer sr;
 
     private float distance;
     // Start is called before the first frame update
@@ -28,5 +31,28 @@ public class SprinterMovement : MonoBehaviour
             //transform.rotation = Quaternion.Euler(Vector3.forward * angle);
         }  
         
+    }
+
+    public void SlowDown(float slowDuration, float slowFactor)
+    {
+        if (!isSlowed)
+        {
+            StartCoroutine(SlowDownCoroutine(slowDuration, slowFactor));
+        }
+        
+    }
+
+    private IEnumerator SlowDownCoroutine(float duration, float factor)
+    {
+        float originalSpeed = speed;
+        speed *= factor; // Slow down the enemy
+        isSlowed = true;
+        sr.color = Color.cyan;
+
+        yield return new WaitForSeconds(duration); // Wait for the specified duration
+
+        sr.color = Color.white;
+        speed = originalSpeed; // Restore the original speed
+        isSlowed = false;
     }
 }

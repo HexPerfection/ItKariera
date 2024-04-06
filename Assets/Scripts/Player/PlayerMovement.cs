@@ -17,7 +17,10 @@ public class PlayerMovement : MonoBehaviour, ISaveLoad
     private bool canDash = true;
     private bool isDash = false;
 
+    private bool isSlowed = false;
+
     public DashBar dashBar;
+    public SpriteRenderer sr;
 
     void Start()
     {
@@ -57,6 +60,28 @@ public class PlayerMovement : MonoBehaviour, ISaveLoad
         Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector3 perpendicular = Vector3.Cross(transform.position - mousePos, Vector3.forward);
         firePoint.rotation = Quaternion.LookRotation(Vector3.forward, perpendicular);
+    }
+
+    public void SlowDown(float slowDuration, float slowFactor)
+    {
+        if (!isSlowed)
+        {
+            StartCoroutine(SlowDownCoroutine(slowDuration, slowFactor));
+        }
+    }
+
+    private IEnumerator SlowDownCoroutine(float duration, float factor)
+    {
+        float multiplier = speedMultiplier;
+        speedMultiplier = factor;
+        isSlowed = true;
+        sr.color = Color.cyan;
+
+        yield return new WaitForSeconds(duration); // Wait for the specified duration
+
+        sr.color = Color.white;
+        speedMultiplier = multiplier; // Restore the original speed
+        isSlowed = false;
     }
 
     private IEnumerator Dash()

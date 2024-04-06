@@ -6,6 +6,10 @@ public class Bullet : MonoBehaviour
 {
     public float damage;
     public GameObject collisionEffect;
+    public int weaponId;
+
+    private float slowDuration = 1f;
+    private float slowFactor = 0.5f;
     
     void OnTriggerEnter2D(Collider2D collision2D)
     {
@@ -20,6 +24,18 @@ public class Bullet : MonoBehaviour
                 {
                     collision2D.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
                 }
+
+                if (weaponId == 4)
+                {
+                    if (collision2D.gameObject.GetComponent<SprinterMovement>() != null)
+                    {
+                        collision2D.gameObject.GetComponent<SprinterMovement>().SlowDown(slowDuration, slowFactor);
+                    }
+                    else
+                    {
+                        collision2D.gameObject.GetComponent<ShooterMovement>().SlowDown(slowDuration, slowFactor);
+                    }
+                }
                 
             }
 
@@ -28,6 +44,11 @@ public class Bullet : MonoBehaviour
             if (collision2D.gameObject.tag == "Player" && collision2D.gameObject.GetComponent<Bullet>() == null)
             {
                 collision2D.gameObject.GetComponent<PlayerHealth>().DamagePlayer(((int)damage));
+            }
+
+            if (weaponId == 4)
+            {
+                collision2D.gameObject.GetComponent<PlayerMovement>().SlowDown(slowDuration, slowFactor);
             }
         }
 

@@ -8,13 +8,16 @@ public class Box : MonoBehaviour
     public float destroyDelay = 0.5f; // Delay before destroying the loot box
     public float health = 5;
     public int id;
+    public int scoreGain = 10;
 
 
     public void DestroyLootBox()
     {
         // Trigger any animations or effects here
 
-        GetComponent<Collider2D>().enabled = false; 
+        GetComponent<Collider2D>().enabled = false;
+
+        FindAnyObjectByType<PlayerScore>().AddScore(scoreGain);
 
         int randomIndex = Random.Range(0, lootItems.Length);
         GameObject randomLoot = lootItems[randomIndex];

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossHealth : MonoBehaviour
 {
     public int maxHealth = 100;
+    public int scoreGain = 300;
    // public Slider healthSlider; // Reference to the UI slider for boss health
     public BossCombat bossCombat; // Reference to the boss controller script
 
@@ -44,6 +45,7 @@ public class BossHealth : MonoBehaviour
     {
         // Handle boss death (e.g., play death animation, spawn loot, etc.)
         Instantiate(deathEffect, transform.position, Quaternion.identity);
+        FindAnyObjectByType<PlayerScore>().AddScore(scoreGain);
         Destroy(gameObject);
         Debug.Log("Boss died. Victory!");
     }
